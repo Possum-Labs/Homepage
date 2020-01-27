@@ -240,7 +240,7 @@ section {
     font-weight: bold;
   }
 
-  /***********************************************************/    
+/***********************************************************/    
 /* Tablets */
 @media (min-width: 768px) {
   h1 {
@@ -263,17 +263,27 @@ section {
   #legacy .grid {
     display: grid;
     grid-template-rows: auto;
-    grid-template-columns: auto auto auto auto auto;
+    grid-template-columns: 2fr 50px 4fr 50px 2fr;
     grid-gap: 0.5em;
     justify-content: center;
     align-items: center;
   }
   #legacy .grid p {
     font-size: 1em;
+    text-align: right;
   }
   #legacy .grid > p,
   #legacy .grid > img {
     display: block;
+  }
+  #legacy .grid > img {
+    margin: auto;
+  }
+  #legacy .pressure {
+    text-align: right;
+  }
+  #legacy p.peril {
+    text-align: left;
   }
   #legacy .pillar {
     background: rgba(255,255,255,0.8);
@@ -294,9 +304,38 @@ section {
   }
   #legacy .pillar p {
     margin: 0;
+    text-align: center;
   }
   
   #process li p {
    font-size: 1em;
   }
+}
+
+  /***********************************************************/    
+/* Tablets */
+@media (min-width: 1024px) {
+  #process ul {
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+  }
+
+  #legacy .grid p {
+    font-size: 1.2em;
+  }
+
+  #legacy .pillar h3 {
+    font-size: 1.3em;
+  }
+
+  #process li {
+    padding: 2em;
+  }
+  #process li h3 {
+    font-size: 1.5em;
+  }
+  #process li p {
+    font-size: 1.2em;
+   }
 }
