@@ -215,8 +215,10 @@ section {
 
 #start {
   background-image: url(assets/field.jpg);
-  justify-content: flex-start;
-  padding-top: 5em;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding: 10% 20%;
 }
   #start::after {
     content: "";
@@ -337,5 +339,10 @@ section {
   }
   #process li p {
     font-size: 1.2em;
-   }
+  }
+
+  #process, #start {
+    background-size: 100% 60%;
+    background-position-y: bottom;
+  }
 }
