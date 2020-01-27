@@ -46,6 +46,9 @@ section {
   position: relative;
   z-index: 2;
 }
+  section.centered {
+    text-align: center;
+  }
 
 #hero {
   background-image: url(assets/fence.jpg);
@@ -149,7 +152,6 @@ section {
 
 #process {
   background-image: url(assets/cliff.jpg);
-  text-align: center;
   justify-content: flex-start;
 }
   #process::after {
@@ -213,7 +215,6 @@ section {
 
 #start {
   background-image: url(assets/field.jpg);
-  text-align: center;
   justify-content: flex-start;
   padding-top: 5em;
 }
@@ -242,6 +243,23 @@ section {
   /***********************************************************/    
 /* Tablets */
 @media (min-width: 768px) {
+  h1 {
+    font-size: 3em;
+  }
+  section > p {
+    font-size: 1.5em;
+    margin-right: 25%;
+  }
+  section.centered > p {
+    margin-right: 20%;
+    margin-left: 20%;
+  }
+
+  #lab .footnote {
+    font-size: 100%;
+    margin: 5em 40% 0 0;
+  }
+
   #legacy .grid {
     display: grid;
     grid-template-rows: auto;
@@ -251,7 +269,7 @@ section {
     align-items: center;
   }
   #legacy .grid p {
-    font-size: 0.9em;
+    font-size: 1em;
   }
   #legacy .grid > p,
   #legacy .grid > img {
@@ -277,5 +295,8 @@ section {
   #legacy .pillar p {
     margin: 0;
   }
+  
+  #process li p {
+   font-size: 1em;
+  }
 }
-
