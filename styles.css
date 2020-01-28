@@ -256,7 +256,10 @@ section {
     margin-right: 20%;
     margin-left: 20%;
   }
-
+  #hero {
+    background-size: 100%;
+    background-position-y: top;
+  }
   #lab .footnote {
     font-size: 100%;
     margin: 5em 40% 0 0;
