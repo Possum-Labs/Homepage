@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Possum Tutorial</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href='assets/css/style.css'>
+    <script type="text/javascript" src="assets/JavaScript/app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <form id='main'>
+            <div class="row">
+                <div class="col">
+                    <input type="text" class="form-control" id="userName" placeholder="User Name">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" id="password" placeholder="Password">
+                </div>
+                <div class="col">
+                    <input type="button" class="form-control btn-secondary" value="Login" onclick="validate();">
+                </div>
+            </div>
+        </form>
+
+        <!-- Buttons to add dealer, store, inventory location and items-->
+        <div id="hiddenForm">
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-secondary initial" data-toggle="modal"
+                        data-target="#dealerModal">
+                        Add Dealer
+                    </button>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-secondary initial" data-toggle="modal"
+                        data-target="#storeModal" onclick="populateDropdown(dealers, 'dealer-dropdown');">
+                        Add Store
+                    </button>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-secondary initial" data-toggle="modal"
+                        data-target="#locationModal" onclick="populateDropdown(dealers, 'dealer-dropdown2');">
+                        Add Inventory Location
+                    </button>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-secondary initial" data-toggle="modal" data-target="#itemModal"
+                        onclick="populateDropdown(locations, 'location-dropdown');">
+                        Add Inventory Item
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dealer Modal -->
+            <div class="modal fade" id="dealerModal" data-backdrop="static" tabindex="-1" role="dialog"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Add dealer</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Dealer Name</label>
+                                    <input type="text" class="form-control" id="dealerName">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary">Add Dealer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Store Modal -->
+            <div class="modal fade" id="storeModal" data-backdrop="static" tabindex="-1" role="dialog"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Add Store</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Store Name</label>
+                                    <input type="text" class="form-control" id="storeName">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Associated Dealer</label>
+                                    <select class="form-control" id="dealer-dropdown">
+
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary">Add Store</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inventory Location Modal -->
+            <div class="modal fade" id="locationModal" data-backdrop="static" tabindex="-1" role="dialog"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Add Inventory Location</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Inventory Location</label>
+                                    <input type="text" class="form-control" id="InvLocName">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Associated Dealer</label>
+                                    <select class="form-control" id="dealer-dropdown2">
+                                        <!-- dropdown list here of dealers -->
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary">Add Inventory Location</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inventory Item Modal -->
+            <div class="modal fade" id="itemModal" data-backdrop="static" tabindex="-1" role="dialog"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Add Inventory</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Inventory Item</label>
+                                    <input type="text" class="form-control" id="inventoryItem">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Inventory Location</label>
+                                    <select class="form-control" id="location-dropdown">
+                                        <option>AutoNation Ford Littleton</option>
+                                        <option>AutoNation Chrysler Jeep Broadway</option>
+                                        <option>AutoNation Buick GMC Park Meadows</option>
+                                        <option>Audi South Coast</option>
+                                        <option>East Madison Toyota</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary">Add Inventory Item</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>

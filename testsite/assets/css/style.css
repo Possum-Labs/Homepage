@@ -1,0 +1,22 @@
+
+
+
+#main {
+       margin-top: 15px;
+}
+
+#hiddenForm {
+    display: none;
+        margin-top: 15px;
+}
+
+input[type=button] {
+    background-color: lightgrey; 
+    
+}
+
+button.initial {
+    
+    width: 250px;
+}
+
