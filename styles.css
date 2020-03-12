@@ -19,6 +19,29 @@ body {
   color: #394553;
 }
 
+nav {
+  position: fixed;
+  z-index: 100;
+  right: 0px;
+  top: 0px;
+  width: 100%;
+}
+  nav a {
+    display: block;
+    color: #fff;
+    background: url(/assets/github.svg) 10px 10px no-repeat rgba(0,0,0,0.8);
+
+    padding: 10px 10px 10px 40px;
+    text-decoration: none;
+    line-height: 20px;
+    text-align: center;
+  }
+    nav a:hover {
+      color: #000;
+      border-bottom: 1px solid rgba(0,0,0,0.8);
+      background: url(/assets/github-black.svg) 10px 10px no-repeat rgba(255,255,255,0.8);
+    }
+
 h1 {
   font-family: 'Merriweather', serif;
   font-size: 2em;
@@ -55,6 +78,17 @@ section {
   align-content: flex-end;
   justify-content: flex-end;
 }
+  #hero::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(180deg, rgba(255,255,255,0) 75%, rgba(255,255,255,1) 100%);
+    background-position: center bottom;
+    z-index: -1;
+  }
   #hero h1 {
     margin: 0;
     font-size: 3em;
@@ -245,6 +279,24 @@ section {
 /***********************************************************/    
 /* Tablets */
 @media (min-width: 768px) {
+  nav {
+    right: 20px;
+    top: 20px;
+    width: auto;
+  }
+    nav a {
+      display: inline-block;
+      color: #fff;
+      background: url(/assets/github.svg) 10px 10px no-repeat rgba(0,0,0,0.8) ;
+  
+      padding: 10px 10px 10px 40px;
+      text-decoration: none;
+      line-height: 20px;
+    }
+    nav a:hover {
+      border: 2px solid rgba(0,0,0,0.8);
+      background: url(/assets/github-black.svg) 10px 10px no-repeat;
+    }
   h1 {
     font-size: 3em;
   }
@@ -318,7 +370,7 @@ section {
 }
 
   /***********************************************************/    
-/* Tablets */
+/* Desktop */
 @media (min-width: 1024px) {
   #process ul {
     margin-left: auto;
