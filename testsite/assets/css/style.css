@@ -2,21 +2,27 @@
 
 
 #main {
-       margin-top: 15px;
+    margin-top: 15px;
 }
 
 #hiddenForm {
-    display: none;
-        margin-top: 15px;
+ display: none;
+     margin-top: 15px;
 }
 
 input[type=button] {
-    background-color: lightgrey; 
-    
+ background-color: lightgrey; 
+ 
 }
 
 button.initial {
-    
-    width: 250px;
+ 
+ width: 250px;
+ font-weight: ;
 }
+
+#buttonDiv {
+ margin-bottom: 150px;
+}
+
 

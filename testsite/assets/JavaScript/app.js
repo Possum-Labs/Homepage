@@ -36,34 +36,23 @@ var dealers = [
     },
     {
         name: "CarMax Inc."
-    },
-    {
-        name: "Group 1 Automotive Inc."
-    },
-    {
-        name: "Lithia Motors Inc."
     }
 ];
 
 //location JSON object
 var locations = [
     {
-        "name": "AutoNation Ford Littleton"
+        name: "AutoNation Ford Littleton"
     },
     {
-        "name": "AutoNation Chrysler Jeep Broadway"
+        name: "Audi South Coast"
     },
     {
-        "name": "AutoNation Buick GMC Park Meadows"
-    },
-    {
-        "name": "Audi South Coast"
-    },
-    {
-        "name": "East Madison Toyota"
+        name: "CarMax South Broadway"
     }
 ];
 
+//populate dropdown
 populateDropdown = (objects, id) => {
     var selectElement = document.getElementById(id);
     selectElement.options.length = 0;
@@ -75,4 +64,69 @@ populateDropdown = (objects, id) => {
     })
 
 }
+
+onPageLoad = () => {
+    bindTable("body1")
+}
+
+//bind the table from localStorage
+bindTable = (EleId) => {
+    //first check if there is something in local storage
+    if (localStorage.getItem("name")) {
+        //get items from local storage and convert to an array
+        var stored = localStorage.getItem("name").split(",");
+        //for each item in local storage array
+        for (var i = 0; i < stored.length; i++) {
+            //            console.log(stored[i]);
+            //create a new row
+            var newRow = document.createElement("tr");
+            //new table data
+            var newCell = document.createElement("td");
+            //each array item will be mapped to the td
+            newCell.innerHTML = stored[i];
+            //append td to the row
+            newRow.append(newCell);
+            //append the row to the referenced element
+            document.getElementById(EleId).appendChild(newRow);
+        }
+
+    }
+
+}
+
+
+
+addDealerName = () => {
+    //Grab user input and selection
+    var newDealerName = document.getElementById("dealerName").value.trim();
+    //console.log(newDealerName);
+    //get value currently stored in local storage
+    var tempDealerName = [];
+    if (localStorage.getItem("name"))
+        tempDealerName = localStorage.getItem("name").split(",");
+    //check that there is not a duplicate in localStorage
+    if (tempDealerName.indexOf(newDealerName) === -1) {
+        //push new item to array, if not a duplicate
+        tempDealerName.push(newDealerName);
+        localStorage.setItem("name", tempDealerName);
+        //also check that there is not a duplcate in the dealer JSON object
+    }
+
+
+    //append new Dealer name to existing table
+    var newRow = document.createElement("tr");
+    var newCell = document.createElement("td");
+    newCell.innerHTML = newDealerName;
+    newRow.append(newCell);
+    document.getElementById("body1").appendChild(newRow);
+    document.getElementById("dealerName").value = "";
+
+    // TODO:
+    //close modal once done input?
+    //change "name" key to "dealer"
+
+}
+
+
+
 
