@@ -61,7 +61,7 @@
                 </div>
                 <div class="col">
                     <button type="button" class="btn btn-secondary initial" data-toggle="modal" data-target="#itemModal"
-                        onclick="populateDropdown(locations, 'location-dropdown');">
+                        onclick="populateDropdown(stores, 'location-dropdown', Store);">
                         Add Inventory Item
                     </button>
                 </div>
@@ -70,30 +70,97 @@
                 <div class="row">
                     <div class="col">
                         <table id="table1" class="table table-striped">
+                            <thead id="head1"></thead>
+                            <tbody id="body1"></tbody>
+                        </table>
+                    </div>
+                    <div class="col">
+                        <table id="table2" class="table table-striped table-secondary">
                             <thead>
                                 <tr>
+                                    <th>Stores</th>
                                     <th>Dealers</th>
                                 </tr>
                             </thead>
-                            <tbody id="body1">
+                            <tbody id="body2">
                                 <tr>
+                                    <td>AutoNation Ford Littleton</td>
                                     <td>AutoNation Inc.</td>
                                 </tr>
                                 <tr>
+                                    <td>Audi South Coast</td>
                                     <td>Penske Automotive Group Inc.</td>
                                 </tr>
                                 <tr>
+                                    <td>CarMax South Broadway</td>
                                     <td>CarMax Inc.</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <div class="col" id="table2"></div>
                 </div>
-                <div class="row">
-                    <div class="col" id="table3"></div>
-                    <div class="col" id="table4"></div>
+                <div class="row row2">
+                    <div class="col">
+                        <table id="table3" class="table table-striped table-secondary">
+                            <thead>
+                                <tr>
+                                    <th>Inventory Location</th>
+                                    <th>Dealer</th>
+                                </tr>
+                            </thead>
+                            <tbody id="body2">
+                                <tr>
+                                    <td>AutoNation Inc.</td>
+                                    <td>AutoNation Ford Littleton</td>
+                                </tr>
+                                <tr>
+                                    <td>Penske Automotive Group Inc.</td>
+                                    <td>Audi South Coast</td>
+                                </tr>
+                                <tr>
+                                    <td>CarMax Inc.</td>
+                                    <td>CarMax South Broadway</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col">
+                        <table id="table4" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Inventory Location</th>
+                                </tr>
+                            </thead>
+                            <tbody id="body2">
+                                <tr>
+                                    <td>AutoNation Inc.</td>
+                                    <td>AutoNation Ford Littleton</td>
+                                </tr>
+                                <tr>
+                                    <td>Penske Automotive Group Inc.</td>
+                                    <td>Audi South Coast</td>
+                                </tr>
+                                <tr>
+                                    <td>CarMax Inc.</td>
+                                    <td>CarMax South Broadway</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+
+                <!-- Testing table only -->
+                <!-- <div class="row">
+                    <div class="col">
+                        <table id="tableTest" class="table table-striped">
+                            <thead id="head1"></thead>
+                            <tbody id="bodyTest"></tbody>
+                        </table>
+                    </div>
+                </div> -->
+
+
             </div>
 
         </div>

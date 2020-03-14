@@ -22,7 +22,11 @@ button.initial {
 }
 
 #buttonDiv {
- margin-bottom: 150px;
+ margin-bottom: 125px;
 }
 
+.row2 {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
 
