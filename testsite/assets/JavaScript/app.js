@@ -52,20 +52,48 @@ var stores = [
     }
 ];
 
-//TODO: make reusable - change the object key to generic for reuse.
+
 //populate dropdown
-populateDropdown = (objects, id) => {
-    //grab the 
+populateDropdown = (objects, id, localKey) => {
+    //grab the selected element by its id
     var selectElement = document.getElementById(id);
     selectElement.options.length = 0;
-    objects.forEach(function (obj) {
+    //pull data from JSON object  
+    objects.forEach(function (item) {
+        //create a dropdown option
         var option = document.createElement("option");
-        option.innerHTML = obj.Dealer;
-        option.value = obj.Dealer;
+        //grab the key name of the specified object key
+        var objKey = Object.keys(objects[0]).toString();
+        //text for that option will be the individual object key items
+        option.innerHTML = item[objKey];
+        //value will be the same
+        option.value = item[objKey];
+        //add the options to the targeted element
         selectElement.options.add(option);
     })
 
+    //pull data from localStorage to populate the dropdown
+    if (localStorage.getItem(localKey)) {
+        //create a variable to store the items in local storage
+        var storedLocally = localStorage.getItem(localKey).split(",");
+        //for each item in local storage
+        storedLocally.forEach(function (eachLocalItem) {
+            //create a new option element for the dropdown
+            var option = document.createElement("option");
+            //console.log(eachLocalItem);
+            //text for option
+            option.innerHTML = eachLocalItem;
+            //value for the option
+            option.value = eachLocalItem;
+            //add the localStorage items to the dropdown
+            selectElement.options.add(option);
+        })
+
+    }
+
 }
+
+
 
 onPageLoad = () => {
     bindTable("head1", "body1", dealers)
@@ -74,7 +102,6 @@ onPageLoad = () => {
 
 //bind data to table upon loading of page
 bindTable = (headID, bodyId, data) => {
-
 
     //generate table with data from JSON object
     //create a row and append it to the thead element
@@ -106,6 +133,7 @@ bindTable = (headID, bodyId, data) => {
         cell.appendChild(text);
 
     })
+
     //pull fata from localStorage, if exists: first check if there is something in local storage
     if (localStorage.getItem("dealer")) {
         //get items from local storage and convert to an array
@@ -157,14 +185,18 @@ addDealerName = () => {
 }
 
 
+
+
 // TODO:
     // Once done with testing, have modals close after input 
     //      DONE - change "name" key to "dealer"
     //      DONE - instead of hard-coded dealer name in HTML, bring names in from JSON object
     //Store Modal & inventory location modals- populate dealer list with items from localStorage, if any
 
-    //PopulateDropDown function - have it get anything stored in localStorage
-    //PopulateDropDown function - make sure this is working for the stores as well as dealers
+    //      DONE - PopulateDropDown function - have it get grab dealers from local storage
+    //      DONE - PopulateDropDown function - make sure this is working for the stores as well as dealers
+    //PopulateDropDown function add store local storage
+    //populateDropDown function add inventory location from local storage
 
     //Table#2 - remove hard-coded table in the HTML
     //Table#2 - hold added stores in localStorage and get them out of localStorage to populate table
