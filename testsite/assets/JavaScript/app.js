@@ -98,7 +98,9 @@ populateDropdown = (objects, id, localKey) => {
 
 onPageLoad = () => {
     bindTable("head1", "body1", dealers, "dealer");
-    bindTable2("store", "body2", "dealerOption")
+    bindTable2("store", "body2", "dealerOption");
+    bindTable2("location", "body3", "dealerOption2");
+    bindTable2("item", "body4", "location2");
 }
 
 //bind data to table upon loading of page
@@ -167,6 +169,7 @@ bindTable2 = (localKey1, bodyId, localKey2) => {
     if (localStorage.getItem(localKey1)) {
         //get items from local storage and convert to an array
         var stored = localStorage.getItem(localKey1).split(",");
+
         //for each item in local storage array
         for (var i = 0; i < stored.length; i++) {
             //            console.log(stored[i]);
@@ -182,7 +185,7 @@ bindTable2 = (localKey1, bodyId, localKey2) => {
             document.getElementById(bodyId).appendChild(newRow);
         }
     }
-
+    //FIXME: When binding after a page refresh the localKey2 is dropping to the second row 
     //key#2: pull data from localStorage, if exists: first check if there is something in local storage for the second key
     if (localStorage.getItem(localKey2)) {
         //get items from local storage and convert to an array
@@ -190,17 +193,18 @@ bindTable2 = (localKey1, bodyId, localKey2) => {
         //for each item in local storage array
         for (var i = 0; i < stored.length; i++) {
             //            console.log(stored[i]);
-            //create a new row
-            // var newRow = document.createElement("tr");
+
             // //new table data
             var newCell2 = document.createElement("td");
             //each array item will be mapped to the td
             newCell2.innerHTML = stored[i];
-            //append td to the row
+            //append td to the existing row
             newRow.append(newCell2);
 
         }
+
     }
+
 }
 
 
@@ -229,55 +233,41 @@ addDealerName = () => {
     document.getElementById("dealerName").value = "";
 }
 
-//TODO: make reusable for tables 2-3
-//TODO: add parameters: eleId, localKey1, bodyId, eleId2, dropdown, localKey2
-addStoreName = () => {
+
+//FIXME: disallow commas in input or need to split array by another method
+addInput = (eleId, localKey1, bodyId, eleId2, localKey2) => {
     //store the store name value to 'newStoreName' variable
-    //TODO: 'EleId' to make this reusuable / 'newName1' for variable
-    var newStoreName = document.getElementById("storeName").value.trim();
-    //console.log(newStoreName);
+    var newName1 = document.getElementById(eleId).value.trim();
+    //console.log(newName1);
     //get store values from localStorage and store in an array
-    //TODO: change to 'tempName1' and all references to it
-    var tempStoreName = [];
-    //TODO: 'localKey1' to reference localStorage key next two lines
-    if (localStorage.getItem("store"))
-        tempStoreName = localStorage.getItem("store").split(",");
+    var tempName1 = [];
+    if (localStorage.getItem(localKey1))
+        tempName1 = localStorage.getItem(localKey1).split(",");
     //check there is not a duplicate in localStorage
-    //if (tempStoreName.indexOf(newStoreName) === -1) {
-    //if no duplcate push to 'newStoreName
-    tempStoreName.push(newStoreName);
-    //TODO: 'localKey1' to name the localStorage item key
-    localStorage.setItem("store", tempStoreName)
+    //if (tempName1.indexOf(newName1) === -1) {
+    //if no duplcate push to 'newName1
+    tempName1.push(newName1);
+    localStorage.setItem(localKey1, tempName1)
     //}
     //append new store name to existing table
     var newRow = document.createElement("tr");
     var newCell = document.createElement("td");
-    newCell.innerHTML = newStoreName;
+    newCell.innerHTML = newName1;
     newRow.append(newCell);
-    //TODO: 'bodyId' to refenence the body id from the HTML tables
-    document.getElementById("body2").appendChild(newRow);
-    //TODO: 'EleId' again
-    document.getElementById("storeName").value = "";
+    document.getElementById(bodyId).appendChild(newRow);
+    document.getElementById(eleId).value = "";
     //target the dealer dropdown in the Store modal
-    //TODO: 'EleId2' / 'newName2' for variable
-    var dealerDropdown = document.getElementById("dealer-dropdown");
-    //TODO: 'selectedOption' for variable / reference to the dealerDropdown -> 'dropdown'
-    //grab the value selected by the user from the dealer dropdown to the 'selectedDealer' variable
-    var selectedDealer = dealerDropdown.options[dealerDropdown.selectedIndex].value;
-    //TODO: change variable to 'tempName2'
-    var tempDealerName = [];
-    //TODO: 'localKey2' for the local storage key, next two lines
-    if (localStorage.getItem("dealerOption"))
-        //TODO: tempDealerName to 'tempName2' /  'dealerOption' to 'localKey2'
-        tempDealerName = localStorage.getItem("dealerOption").split(",");
-    //TODO: 'tempName2' / 'selectedOption'
-    tempDealerName.push(selectedDealer);
-    //TODO: 'localKey2' / 'tempName2'
-    localStorage.setItem("dealerOption", tempDealerName);
+    var newName2 = document.getElementById(eleId2);
+    //grab the value selected by the user from the targeted dropdown to the 'selectedOption' variable
+    var selectedOption = newName2.options[newName2.selectedIndex].value;
+    var tempName2 = [];
+    if (localStorage.getItem(localKey2))
+        tempName2 = localStorage.getItem(localKey2).split(",");
+    tempName2.push(selectedOption);
+    localStorage.setItem(localKey2, tempName2);
     //push the selected item to the table
     var newCell2 = document.createElement("td");
-    //TODO: 'selectedOption'
-    newCell2.innerHTML = selectedDealer;
+    newCell2.innerHTML = selectedOption;
     newRow.append(newCell2);
 
 }
@@ -297,12 +287,12 @@ addStoreName = () => {
 
 //      DONE - bindTable function needs to be reusable 
 
-
+//FIXME: bugs to fix for binding table
 //create a newbindTable to bind the items into tables 2 -3 at pageLoad
 
     //      DONE - Table#2 - hold added stores in localStorage and get them out of localStorage to populate table along with selected dealer
 
-    //Table#3 - hold added inventory locations in localStorage and get them out of localStorage to populate table along with selected dealer
+    //      DONE - Table#3 - hold added inventory locations in localStorage and get them out of localStorage to populate table along with selected dealer
 
-    //Table#4 - hold added inventory items in localStorage and get them out of localStorage to populate table along with slected inventory location
+    //      DONE - Table#4 - hold added inventory items in localStorage and get them out of localStorage to populate table along with slected inventory location
 
