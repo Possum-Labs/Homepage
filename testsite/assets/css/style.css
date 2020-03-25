@@ -30,3 +30,17 @@ button.initial {
     margin-bottom: 50px;
 }
 
+
+.no-close .ui-dialog-titlebar-close {
+    display: none;
+  }
+
+  .ui-dialog {
+      background-color:#b3cffc;
+  }
+
+  .ui-widget-header {
+      background-color:#4287f5;
+      color: white;
+      font-weight: bold;
+  }
