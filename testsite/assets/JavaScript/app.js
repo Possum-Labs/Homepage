@@ -73,7 +73,10 @@ populateDropdown = (objects, id, localKey, index) => {
     //pull data from localStorage to populate the dropdown
     if (localStorage.getItem(localKey)) {
         //create a variable to store the items in local storage
-        var storedLocally = localStorage.getItem(localKey).split(",");
+        //var storedLocally = localStorage.getItem(localKey).split(",");
+        //change to parse data as an object
+        var storedLocally = JSON.parse(localStorage.getItem(localKey));
+
         //for each item in local storage
         storedLocally.forEach(function (eachLocalItem) {
             //create a new option element for the dropdown
@@ -106,23 +109,6 @@ onPageLoad = () => {
 //localKey is the key name from localStorage
 bindTable = (headID, bodyId, objects, localKey, index) => {
 
-    //TODO: delete this header section upon completion
-    // //generate table with data from JSON object
-    // //create a row and append it to the thead element
-    // var row = document.createElement("tr");
-    // //grab the header tag in the HTML
-    // var header = document.getElementById(headID);
-    // //append the row to the header
-    // header.appendChild(row);
-    // //create a th element to house the object key text and attach to the row
-    // var th = document.createElement("th");
-    // //grab the value for the header from the JSON object
-    // var headerValue = Object.keys(objects[0]);
-    // //text for the 'th' element
-    // th.innerHTML = headerValue;
-    // //append it to the row created
-    // row.appendChild(th);
-
 
     //for each item in the JSON object
     objects.forEach(function (eachItem) {
@@ -144,7 +130,11 @@ bindTable = (headID, bodyId, objects, localKey, index) => {
     //pull data from localStorage, if exists: first check if there is something in local storage
     if (localStorage.getItem(localKey)) {
         //get items from local storage and convert to an array
-        var stored = localStorage.getItem(localKey).split(",");
+        // var stored = localStorage.getItem(localKey).split(",");
+        //local storage objects now instead of an array
+        var stored = JSON.parse(localStorage.getItem(localKey));
+        // console.log(stored);
+
         //for each item in local storage array
         for (var i = 0; i < stored.length; i++) {
             //            console.log(stored[i]);
@@ -173,8 +163,8 @@ bindTable2 = (localKey1, bodyId, localKey2, objects, index, index2) => {
         document.getElementById(bodyId).appendChild(row);
         row.appendChild(cell);
         row.appendChild(cell2);
-        var objKey = Object.keys(objects[0])[index];
-        var objKey2 = Object.keys(objects[0])[index2];
+        let objKey = Object.keys(objects[0])[index];
+        let objKey2 = Object.keys(objects[0])[index2];
         let text = document.createTextNode(eachItem[objKey]);
         let text2 = document.createTextNode(eachItem[objKey2]);
         cell.appendChild(text);
@@ -184,44 +174,42 @@ bindTable2 = (localKey1, bodyId, localKey2, objects, index, index2) => {
 
 
     //bind the items from local storage to tables
-    //key#1: pull data from localStorage, if exists: first check if there is something in local storage for the first key
-    if (localStorage.getItem(localKey1)) {
-        //get items from local storage and convert to an array
-        var stored = localStorage.getItem(localKey1).split(",");
+    //check first if there is anything in local storage
+    if (localStorage.getItem(localKey1) && localStorage.getItem(localKey2)) {
+        //grab items from local storage 1st key
+        //let stored = localStorage.getItem(localKey1).split(",");
+        //get data from local storage object 1st key
+        let stored = JSON.parse(localStorage.getItem(localKey1));
 
-        //for each item in local storage array
-        for (var i = 0; i < stored.length; i++) {
-            //            console.log(stored[i]);
-            //create a new row
-            var newRow = document.createElement("tr");
-            //new table data
-            var newCell = document.createElement("td");
-            //each array item will be mapped to the td
-            newCell.innerHTML = stored[i];
-            //append td to the row
-            newRow.append(newCell);
-            //append the row to the table body element
-            document.getElementById(bodyId).appendChild(newRow);
-        }
-    }
-    //FIXME: When binding after a page refresh the localKey2 is dropping to the second row 
+        //grab items from local storage 2nd key
+        //let stored2 = localStorage.getItem(localKey2).split(",");
+        //get data from local storage object 2nd key
+        let stored2 = JSON.parse(localStorage.getItem(localKey2));
 
-    //key#2: pull data from localStorage, if exists: first check if there is something in local storage for the second key
-    if (localStorage.getItem(localKey2)) {
-        //get items from local storage and convert to an array
-        var stored = localStorage.getItem(localKey2).split(",");
-        //for each item in local storage array
-        for (var i = 0; i < stored.length; i++) {
-            //            console.log(stored[i]);
+        //keep track of the index
+        var currentIndex = 0;
+        //got through each value in the stored variable
+        stored.forEach(function (key) {
+            //create a row
+            let row = document.createElement("tr");
+            //create a data cell
+            let cell = document.createElement("td");
+            //create another data cell for the 2nd key values
+            let cell2 = document.createElement("td");
+            //append the row to the body 
+            document.getElementById(bodyId).appendChild(row);
+            //append the first cell to the row
+            row.appendChild(cell);
+            //append the 2nd cell to the row
+            row.appendChild(cell2);
+            //text on cell 1 is equal to the values of the key item
+            cell.innerHTML = key;
+            //text on cell 2 is equal to the values of each index in stored2 variable
+            cell2.innerHTML = stored2[currentIndex];
+            //increase the index
+            currentIndex++;
+        })
 
-            // //new table data
-            var newCell2 = document.createElement("td");
-            //each array item will be mapped to the td
-            newCell2.innerHTML = stored[i];
-            //append td to the existing row
-            newRow.append(newCell2);
-
-        }
 
     }
 
@@ -234,14 +222,24 @@ addDealerName = () => {
     var newDealerName = document.getElementById("dealerName").value.trim();
     //TODO: check input against data already in JSON object
     //get value currently stored in local storage
-    var tempDealerName = [];
-    if (localStorage.getItem("dealer"))
-        tempDealerName = localStorage.getItem("dealer").split(",");
-    //check that there is not a duplicate in localStorage
-    if (tempDealerName.indexOf(newDealerName) === -1) {
-        //push new item to array, if not a duplicate
-        tempDealerName.push(newDealerName);
-        localStorage.setItem("dealer", tempDealerName);
+    if (newDealerName.length > 0) {
+        var tempDealerName = [];
+        if (localStorage.getItem("dealer"))
+            //tempDealerName = localStorage.getItem("dealer").split(",");
+            //dealer local storage object
+            tempDealerName = JSON.parse(localStorage.getItem('dealer'));
+
+        //check that there is not a duplicate in localStorage
+        if (tempDealerName.indexOf(newDealerName) === -1) {
+            //push new item to array, if not a duplicate
+            tempDealerName.push(newDealerName);
+            //store local storage in a JSON object
+            localStorage.setItem("dealer", JSON.stringify(tempDealerName));
+
+        }
+    } else {
+
+        return alert("Please complete the form first before submitting.");
 
     }
     //append new Dealer name to existing table
@@ -253,50 +251,63 @@ addDealerName = () => {
     document.getElementById("dealerName").value = "";
 
     inputConfirmation();
+
 }
 
 
-
-
-
-
-//FIXME: if user inputs data with a column, this will separate the data into separate cells
 addInput = (eleId, localKey1, bodyId, eleId2, localKey2) => {
     //store the store name value to 'newStoreName' variable
     var newName1 = document.getElementById(eleId).value.trim();
     //console.log(newName1);
     //get store values from localStorage and store in an array
-    var tempName1 = [];
-    if (localStorage.getItem(localKey1))
-        tempName1 = localStorage.getItem(localKey1).split(",");
-    //check there is not a duplicate in localStorage
-    //if (tempName1.indexOf(newName1) === -1) {
-    //if no duplcate push to 'newName1
-    tempName1.push(newName1);
-    localStorage.setItem(localKey1, tempName1)
-    //}
-    //append new store name to existing table
-    var newRow = document.createElement("tr");
-    var newCell = document.createElement("td");
-    newCell.innerHTML = newName1;
-    newRow.append(newCell);
-    document.getElementById(bodyId).appendChild(newRow);
-    document.getElementById(eleId).value = "";
-    //target the dealer dropdown in the Store modal
-    var newName2 = document.getElementById(eleId2);
-    //grab the value selected by the user from the targeted dropdown to the 'selectedOption' variable
-    var selectedOption = newName2.options[newName2.selectedIndex].value;
-    var tempName2 = [];
-    if (localStorage.getItem(localKey2))
-        tempName2 = localStorage.getItem(localKey2).split(",");
-    tempName2.push(selectedOption);
-    localStorage.setItem(localKey2, tempName2);
-    //push the selected item to the table
-    var newCell2 = document.createElement("td");
-    newCell2.innerHTML = selectedOption;
-    newRow.append(newCell2);
+    if (newName1.length > 0) {
+        var tempName1 = [];
+        if (localStorage.getItem(localKey1))
+            //tempName1 = localStorage.getItem(localKey1).split(",");
+            //grab the local storage object
+            tempName1 = JSON.parse(localStorage.getItem(localKey1));
 
-}
+        //check there is not a duplicate in localStorage
+        //if (tempName1.indexOf(newName1) === -1) {
+        //if no duplcate push to 'newName1
+        tempName1.push(newName1);
+        //store local storage in an object
+        localStorage.setItem(localKey1, JSON.stringify(tempName1));
+        //}
+        //append new store name to existing table
+        var newRow = document.createElement("tr");
+        var newCell = document.createElement("td");
+        newCell.innerHTML = newName1;
+        newRow.append(newCell);
+        document.getElementById(bodyId).appendChild(newRow);
+        document.getElementById(eleId).value = "";
+        //target the dealer dropdown in the Store modal
+        var newName2 = document.getElementById(eleId2);
+        //grab the value selected by the user from the targeted dropdown to the 'selectedOption' variable
+        var selectedOption = newName2.options[newName2.selectedIndex].value;
+        var tempName2 = [];
+        if (localStorage.getItem(localKey2))
+            //tempName2 = localStorage.getItem(localKey2).split(",");
+            //grab the local storage object for localKey2
+            tempName2 = JSON.parse(localStorage.getItem(localKey2));
+        tempName2.push(selectedOption);
+        //store local storage object
+        localStorage.setItem(localKey2, JSON.stringify(tempName2));
+        //push the selected item to the table
+        var newCell2 = document.createElement("td");
+        newCell2.innerHTML = selectedOption;
+        newRow.append(newCell2);
+        inputConfirmation();
+    } else {
+
+        return alert("Please complete the form first before submitting.");
+
+
+    }
+};
+
+
+
 
 clearStorage = () => {
     localStorage.clear();
@@ -339,14 +350,21 @@ inputConfirmation = () => {
 
 
 // TODO:
-//Once done with testing, have modals close after input 
-//FIXME: bugs to fix for binding table
+
 //Check for duplicate entries in JSON object before allowing input
-//FIXME: commas in inputted data is seen as different items in the array of items in local storage and will create a new cell for data separated by commas
+
 //Fix Clear User Data Button as sticky footer / or fixed footer
-//add confirmation to all inputs
+//modal to remain open if no data is input
+//confirmation dialog box slightly shifts data on screen upon opening and closing
 
 
+
+
+//      DONE - bugs to fix for binding table
+//      DONE - commas in inputted data is seen as different items in the array of items in local storage and will create a new cell for data separated by commas
+//      DONE - do not allow for inputs containing no data
+//      DONE - Once done with testing, have modals close after input 
+//      DONE - add confirmation to all inputs
 //      DONE - Brief confirmation acknowledging the user has input data
 //      DONE - create JSON object for inventory locations?
 //      DONE - When clear data is hit refresh the data in the tables
