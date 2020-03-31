@@ -176,13 +176,10 @@ bindTable2 = (localKey1, bodyId, localKey2, objects, index, index2) => {
     //bind the items from local storage to tables
     //check first if there is anything in local storage
     if (localStorage.getItem(localKey1) && localStorage.getItem(localKey2)) {
-        //grab items from local storage 1st key
-        //let stored = localStorage.getItem(localKey1).split(",");
+
         //get data from local storage object 1st key
         let stored = JSON.parse(localStorage.getItem(localKey1));
 
-        //grab items from local storage 2nd key
-        //let stored2 = localStorage.getItem(localKey2).split(",");
         //get data from local storage object 2nd key
         let stored2 = JSON.parse(localStorage.getItem(localKey2));
 
@@ -225,7 +222,7 @@ addDealerName = () => {
     if (newDealerName.length > 0) {
         var tempDealerName = [];
         if (localStorage.getItem("dealer"))
-            //tempDealerName = localStorage.getItem("dealer").split(",");
+
             //dealer local storage object
             tempDealerName = JSON.parse(localStorage.getItem('dealer'));
 
@@ -256,12 +253,10 @@ addDealerName = () => {
 addInput = (eleId, localKey1, bodyId, eleId2, localKey2) => {
     //store the store name value to 'newStoreName' variable
     var newName1 = document.getElementById(eleId).value.trim();
-    //console.log(newName1);
     //get store values from localStorage and store in an array
     if (newName1.length > 0) {
         var tempName1 = [];
         if (localStorage.getItem(localKey1))
-            //tempName1 = localStorage.getItem(localKey1).split(",");
             //grab the local storage object
             tempName1 = JSON.parse(localStorage.getItem(localKey1));
 
@@ -285,7 +280,7 @@ addInput = (eleId, localKey1, bodyId, eleId2, localKey2) => {
         var selectedOption = newName2.options[newName2.selectedIndex].value;
         var tempName2 = [];
         if (localStorage.getItem(localKey2))
-            //tempName2 = localStorage.getItem(localKey2).split(",");
+
             //grab the local storage object for localKey2
             tempName2 = JSON.parse(localStorage.getItem(localKey2));
         tempName2.push(selectedOption);
@@ -348,7 +343,7 @@ inputConfirmation = () => {
 //Check for duplicate entries in JSON object before allowing input
 //should buttons to add be inside the individual tabs?
 //Fix Clear User Data Button as sticky footer / or fixed footer?
-
+// Disallow duplicate entries?
 
 
 //      DONE - bugs to fix for binding table
