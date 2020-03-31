@@ -32,19 +32,19 @@ var dealers2 = [
         Dealer: "AutoNation Inc.",
         Store: "AutoNation Ford Littleton",
         Location: "AutoNation Ford Littleton - Lot A",
-        Inventory: "2020 F-150 Stock# F150-856"
+        Inventory: "2020 F-150, Stock# F150-856"
     },
     {
         Dealer: "Penske Automotive Group Inc.",
         Store: "Audi South Coast",
         Location: "Audi South Coast Garage",
-        Inventory: "2020 Q3 SUV Stock# Q3-125"
+        Inventory: "2020 Q3 SUV, Stock# Q3-125"
     },
     {
         Dealer: "CarMax Inc.",
         Store: "CarMax South Broadway",
         Location: "CarMax South Broadway - Lot B",
-        Inventory: "2014 Honda Pilot Stock# HN-45692"
+        Inventory: "2014 Honda Pilot, Stock# HN-45692"
     }
 ];
 
@@ -238,9 +238,7 @@ addDealerName = () => {
 
         }
     } else {
-
-        return alert("Please complete the form first before submitting.");
-
+        return
     }
     //append new Dealer name to existing table
     var newRow = document.createElement("tr");
@@ -299,10 +297,7 @@ addInput = (eleId, localKey1, bodyId, eleId2, localKey2) => {
         newRow.append(newCell2);
         inputConfirmation();
     } else {
-
-        return alert("Please complete the form first before submitting.");
-
-
+        return
     }
 };
 
@@ -350,13 +345,9 @@ inputConfirmation = () => {
 
 
 // TODO:
-
 //Check for duplicate entries in JSON object before allowing input
-
-//Fix Clear User Data Button as sticky footer / or fixed footer
-//modal to remain open if no data is input
-//confirmation dialog box slightly shifts data on screen upon opening and closing
-
+//should buttons to add be inside the individual tabs?
+//Fix Clear User Data Button as sticky footer / or fixed footer?
 
 
 
