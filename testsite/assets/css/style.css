@@ -2,21 +2,54 @@
 
 
 #main {
-       margin-top: 15px;
+    margin-top: 20px;
 }
 
+
 #hiddenForm {
-    display: none;
-        margin-top: 15px;
+display: none;
+margin-top: 15px;
+width: 80%;
 }
 
 input[type=button] {
-    background-color: lightgrey; 
-    
+ background-color: lightgrey; 
+ 
 }
 
 button.initial {
-    
-    width: 250px;
+ margin-bottom: 15px; 
+
 }
 
+#buttonDiv {
+ margin-bottom: 125px;
+}
+
+.row2 {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+
+.no-close .ui-dialog-titlebar-close {
+    display: none;
+  }
+
+  .ui-dialog {
+      background-color:#b3cffc;
+  }
+
+  .ui-widget-header {
+      background-color:#4287f5;
+      color: white;
+      font-weight: bold;
+  }
+
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 85%;
+   text-align: center;
+  }
