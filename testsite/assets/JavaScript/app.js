@@ -341,11 +341,12 @@ inputConfirmation = () => {
 
 // TODO:
 //Check for duplicate entries in JSON object before allowing input
-//should buttons to add be inside the individual tabs?
-//Fix Clear User Data Button as sticky footer / or fixed footer?
-// Disallow duplicate entries?
+//Change confirmation dialog to a bootstrap toast?
+//Change login
 
 
+//      DONE - should buttons to add be inside the individual tabs?
+//      DONE - Fix Clear User Data Button as sticky footer / or fixed footer?
 //      DONE - bugs to fix for binding table
 //      DONE - commas in inputted data is seen as different items in the array of items in local storage and will create a new cell for data separated by commas
 //      DONE - do not allow for inputs containing no data

@@ -2,12 +2,14 @@
 
 
 #main {
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
+
 #hiddenForm {
- display: none;
-     margin-top: 15px;
+display: none;
+margin-top: 15px;
+width: 80%;
 }
 
 input[type=button] {
@@ -16,9 +18,8 @@ input[type=button] {
 }
 
 button.initial {
- 
- width: 250px;
- font-weight: ;
+ margin-bottom: 15px; 
+
 }
 
 #buttonDiv {
@@ -43,4 +44,12 @@ button.initial {
       background-color:#4287f5;
       color: white;
       font-weight: bold;
+  }
+
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 85%;
+   text-align: center;
   }

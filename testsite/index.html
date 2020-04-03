@@ -13,6 +13,11 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!--Fontawesome CDN-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
     <link rel="stylesheet" href='assets/css/style.css'>
     <script type="text/javascript" src="assets/JavaScript/app.js"></script>
 
@@ -33,7 +38,7 @@
     <!-- Login -->
     <div class="container">
         <form id='main'>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col">
                     <input type="text" class="form-control" id="userName" placeholder="User Name">
                 </div>
@@ -43,15 +48,42 @@
                 <div class="col">
                     <input type="button" class="form-control btn-secondary" value="Login" onclick="validate();">
                 </div>
-            </div>
-            <br>
+            </div> -->
+
 
             <div class="jumbotron jumbotron-fluid">
                 <div class="container">
-                    <h5>Please note:</h5>
-                    <p>This site is intended for testing with Selenium<br><span style="color: blue;">Login credentials
-                            for both user name and
-                            password: possum</span></p>
+                    <h4 style="text-align: center;">Welcome to the Possum Labs Test site</h4>
+                    <p> This is a site intended for practicing the creation of
+                        selenium test automation implementations. It focuses on simulating the essential parts of a Line
+                        of Business Application. Business applications are about managing relational data. In this
+                        application, we have Dealers; Dealers have Stores and Inventory Locations. Stores have Users,
+                        and Inventory Locations have Items. There is a many to many relationships between the Store and
+                        Inventory Location.
+                        <br><br>
+                        The site comes pre-loaded with data and utilizes local storage.
+                        <br><br>
+                        This site was created by Barbara Whiting (<a href="https://github.com/whitingba"
+                            target="_blank">https://github.com/whitingba</a>) to support the Possum Labs
+                        DSL (<a href="http://dsl.possumlabs.com/" target="_blank">http://dsl.possumlabs.com/</a>)
+                        project. The Possum Labs DSL project focuses on creating tests
+                        for existing applications in a human-readable customizable domain-specific language.
+                        <br><br>
+                        The source code for this site is available at <a href="https://github.com/Possum-Labs/Homepage"
+                            target="_blank">https://github.com/Possum-Labs/Homepage</a>
+                        <br>
+                        <!-- Border around login -->
+                        <div class="border border-dark p-3 mb-4">
+                            <div class="text-center">
+                                <span style="color: blue;">*Login credentials
+                                    for both user name and
+                                    password: possum</span>
+                                <br><br>
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#loginModal">Login</button>
+                            </div>
+                        </div>
+                    </p>
 
                 </div>
             </div>
@@ -60,7 +92,7 @@
 
         <!-- Buttons to add dealer, store, inventory location and items-->
         <div id="hiddenForm">
-            <div class="row" id="buttonDiv">
+            <!-- <div class="row" id="buttonDiv">
                 <div class="col">
                     <button type="button" class="btn btn-secondary initial" data-toggle="modal"
                         data-target="#dealerModal">
@@ -83,18 +115,17 @@
                 <div class="col">
                     <button type="button" class="btn btn-secondary initial" data-toggle="modal" data-target="#itemModal"
                         onclick="populateDropdown(dealers2, 'location-dropdown', 'location', 2);">
-                        <!-- once I am writing stores to localStorage I will need to add the localStorage key to populate dropdown -->
-                        Add Inventory Item
+                                               Add Inventory Item
                     </button>
                 </div>
-            </div>
+            </div> -->
 
             <!-- confirmation of input -->
             <div id="dialog" style="display: none;">
                 Your data has been input
             </div>
 
-            <h6>Click on the tabs below to see each table</h6>
+
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" id="pills-dealer-tab" data-toggle="pill" href="#pills-dealer" role="tab"
@@ -117,6 +148,11 @@
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-dealer" role="tabpanel"
                     aria-labelledby="pills-dealer-tab">
+                    <button type="button" class="btn btn-secondary initial" data-toggle="modal"
+                        data-target="#dealerModal">
+                        Add Dealer
+                    </button>
+
                     <table id="table1" class="table table-striped">
                         <thead id="head1">
                             <tr>
@@ -127,6 +163,10 @@
                     </table>
                 </div>
                 <div class="tab-pane fade" id="pills-store" role="tabpanel" aria-labelledby="pills-store-tab">
+                    <button type="button" class="btn btn-secondary initial" data-toggle="modal"
+                        data-target="#storeModal" onclick="populateDropdown(dealers2, 'dealer-dropdown', 'dealer', 0);">
+                        Add Store
+                    </button>
                     <table id="table2" class="table table-striped">
                         <thead id="head2">
                             <tr>
@@ -135,23 +175,17 @@
                             </tr>
                         </thead>
                         <tbody id="body2">
-                            <!-- <tr>
-                                <td>AutoNation Ford Littleton</td>
-                                <td>AutoNation Inc.</td>
-                            </tr>
-                            <tr>
-                                <td>Audi South Coast</td>
-                                <td>Penske Automotive Group Inc.</td>
-                            </tr>
-                            <tr>
-                                <td>CarMax South Broadway</td>
-                                <td>CarMax Inc.</td>
-                            </tr> -->
+
                         </tbody>
                     </table>
                 </div>
                 <div class="tab-pane fade" id="pills-invLoc" role="tabpanel"
                     aria-labelledby="pills-inventoryLocation-tab">
+                    <button type="button" class="btn btn-secondary initial" data-toggle="modal"
+                        data-target="#locationModal"
+                        onclick="populateDropdown(dealers2, 'dealer-dropdown2', 'dealer', 0);">
+                        Add Inventory Location
+                    </button>
                     <table id="table3" class="table table-striped">
                         <thead id="head3">
                             <tr>
@@ -160,22 +194,15 @@
                             </tr>
                         </thead>
                         <tbody id="body3">
-                            <!-- <tr>
-                                <td>AutoNation Ford Littleton - Lot A</td>
-                                <td>AutoNation Inc.</td>
-                            </tr>
-                            <tr>
-                                <td>Audi South Coast Garage</td>
-                                <td>Penske Automotive Group Inc.</td>
-                            </tr>
-                            <tr>
-                                <td>CarMax South Broadway - Lot B</td>
-                                <td>CarMax Inc.</td>
-                            </tr> -->
+
                         </tbody>
                     </table>
                 </div>
                 <div class="tab-pane fade" id="pills-invItem" role="tabpanel" aria-labelledby="pills-inventoryItem-tab">
+                    <button type="button" class="btn btn-secondary initial" data-toggle="modal" data-target="#itemModal"
+                        onclick="populateDropdown(dealers2, 'location-dropdown', 'location', 2);">
+                        Add Inventory Item
+                    </button>
                     <table id="table4" class="table table-striped">
                         <thead id="head4">
                             <tr>
@@ -184,18 +211,7 @@
                             </tr>
                         </thead>
                         <tbody id="body4">
-                            <!-- <tr>
-                                <td>2020 F-150, Stock# F150-8569</td>
-                                <td>AutoNation Ford Littleton - Lot A</td>
-                            </tr>
-                            <tr>
-                                <td>2020 Q3 SUV, Stock# Q3-125</td>
-                                <td>Audi South Coast Garage</td>
-                            </tr>
-                            <tr>
-                                <td>2014 Honda Pilot, Stock# HN-45692</td>
-                                <td>CarMax South Broadway - Lot B</td>
-                            </tr> -->
+
                         </tbody>
                     </table>
                 </div>
@@ -211,22 +227,68 @@
 
 
             <!-- Button to clear local storage -->
-            <div id="clearButton">
-                <div class="row">
-                    <div class="col">
-                        <button type="button" class="btn btn-primary initial" onclick="clearStorage();">Clear All User
-                            Data</button>
-                        <p style="font-size: 12px;">By clicking the 'Clear All User Data' button you will be clearing
-                            all
-                            data you have input
-                            into the tables</p>
+            <footer class="footer">
+                <div id="clearButton">
+                    <div class="row">
+                        <div class="col">
+                            <button type="button" class="btn btn-warning initial" onclick="clearStorage();">Clear All
+                                User
+                                Data</button>
+                            <p style="font-size: 12px;">By clicking the 'Clear All User Data' button you will be
+                                clearing
+                                all
+                                data you have input
+                                into the tables</p>
+                        </div>
                     </div>
+                </div>
+
+            </footer>
+        </div>
+        <!-- Modals -->
+
+        <!-- Login Modal -->
+        <div class="modal fade" id="loginModal" data-backdrop="static" tabindex="-1" role="dialog"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Sign In</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
+                                <input type="text" class="form-control" id="userName" placeholder="User Name">
+                            </div>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                                <input type="text" class="form-control" id="password" placeholder="Password">
+                            </div>
+
+
+
+
+                        </form>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal"
+                                onclick="validate();">Login</button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
 
 
-        <!-- Modals -->
+
         <!-- Dealer Modal -->
         <div class="modal fade" id="dealerModal" data-backdrop="static" tabindex="-1" role="dialog"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
