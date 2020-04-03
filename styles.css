@@ -16,7 +16,7 @@ body {
   height: 100vh;
   width: 100%;
   overflow-x: hidden;
-  color: #394553;
+  color: #d1d3d4;
 }
 
 nav {
@@ -29,7 +29,7 @@ nav {
   nav a {
     display: block;
     color: #fff;
-    background: url(/assets/github.svg) 10px 10px no-repeat rgba(0,0,0,0.8);
+    background: url(/assets/github.svg) 10px 10px no-repeat rgba(255,255,255,0.8);
 
     padding: 10px 10px 10px 40px;
     text-decoration: none;
@@ -37,8 +37,8 @@ nav {
     text-align: center;
   }
     nav a:hover {
-      color: #000;
-      border-bottom: 1px solid rgba(0,0,0,0.8);
+      color: #288d98;
+      border-bottom: 1px solid rgba(255,255,255,0.8);
       background: url(/assets/github-black.svg) 10px 10px no-repeat rgba(255,255,255,0.8);
     }
 
@@ -47,7 +47,7 @@ h1 {
   font-size: 2em;
   font-weight: 500;
   margin-bottom: 0.5em;
-  color: #191F26;
+  color: #FFFFFF;
 }
 
 p {
@@ -74,7 +74,7 @@ section {
   }
 
 #hero {
-  background-image: url(assets/fence.jpg);
+  background-image: url(assets/PossumLabs_BG-1.jpg);
   align-content: flex-end;
   justify-content: flex-end;
 }
@@ -85,8 +85,6 @@ section {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: linear-gradient(180deg, rgba(255,255,255,0) 75%, rgba(255,255,255,1) 100%);
-    background-position: center bottom;
     z-index: -1;
   }
   #hero h1 {
@@ -98,8 +96,7 @@ section {
   }
 
 #beyond {
-  background: rgba(255,255,255,0.00);
-  background-image: url(assets/cracks.jpg);
+  background-image: url(assets/PossumLabs_BG-2.jpg);
 }
   #beyond::after {
     content: "";
@@ -108,12 +105,10 @@ section {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: linear-gradient(180deg, rgba(255,255,255,0.15) 32%, rgba(2,172,236,0.15) 100%);
-    background-position: center bottom;
   }
 
 #lab {
-  background-image: url(assets/tree.jpg);
+  background-image: url(assets/PossumLabs_BG-3.jpg);
 }
   #lab::after {
     content: "";
@@ -122,8 +117,6 @@ section {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: linear-gradient(180deg, #FFFFFF 62%, rgba(2,236,93,0.10) 100%);
-    background-position: center bottom;
     z-index: -1;
   }
   #lab .footnote {
@@ -132,7 +125,7 @@ section {
   }
 
 #legacy {
-  background-image: url(assets/windmill.jpg);
+  background-image: url(assets/PossumLabs_BG-4.jpg);
   text-align: center;
   justify-content: flex-start;
 }
@@ -143,8 +136,6 @@ section {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: linear-gradient(180deg, rgba(255,255,255,0.25) 65%, rgba(126,255,124,0.25) 100%);
-    background-position: center bottom;
     z-index: -1;
   }
   #legacy .grid {
@@ -162,7 +153,7 @@ section {
     display: none;
   }
   #legacy .pillar {
-    background: rgba(255,255,255,0.8);
+    background: rgba(40,141,152,0.8);
     border: 3px solid #000;
     display: flex;
     flex-direction: column;
@@ -185,7 +176,7 @@ section {
   }
 
 #process {
-  background-image: url(assets/cliff.jpg);
+  background-image: url(assets/PossumLabs_BG-5.jpg);
   justify-content: flex-start;
 }
   #process::after {
@@ -195,8 +186,6 @@ section {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: linear-gradient(180deg, rgba(255,255,255,0.25) 67%, rgba(28,216,189,0.25) 100%);
-    background-position: center bottom;
     z-index: -1;
   }
   #process ul {
@@ -204,7 +193,7 @@ section {
   }
     #process li {
       border: 3px solid #000;
-      background-color: rgba(255,255,255,0.8);
+      background-color: rgba(40,141,152,0.8);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -224,7 +213,7 @@ section {
       }
       #process .connection {
         background: #000;
-        color: #fff;
+        color: #299d89;
       }
         #process .connection::before,
         #process .connection::after
@@ -248,7 +237,7 @@ section {
         }
 
 #start {
-  background-image: url(assets/field.jpg);
+  background-image: url(assets/PossumLabs_BG-6.jpg);
   display: flex;
   align-content: center;
   justify-content: center;
@@ -261,13 +250,11 @@ section {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: linear-gradient(180deg, rgba(255,255,255,0.25) 67%, rgba(238,85,6,0.25) 100%);
-    background-position: center bottom;
     z-index: -1;
   }
   #start a {
     display: inline-block;
-    background: #000;
+    background: #288d98;
     color: #fff;
     text-decoration: none;
     width: 200px;
@@ -309,8 +296,7 @@ section {
     margin-left: 20%;
   }
   #hero {
-    background-size: 100%;
-    background-position-y: top;
+
   }
   #lab .footnote {
     font-size: 100%;
@@ -343,7 +329,6 @@ section {
     text-align: left;
   }
   #legacy .pillar {
-    background: rgba(255,255,255,0.8);
     border: 3px solid #000;
     display: flex;
     flex-direction: column;
@@ -397,7 +382,7 @@ section {
   }
 
   #process, #start {
-    background-size: 100% 60%;
+    background-size: 100% 100%;
     background-position-y: bottom;
   }
 }
