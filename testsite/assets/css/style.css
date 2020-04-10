@@ -7,9 +7,12 @@
 
 
 #hiddenForm {
+    position: relative;
 display: none;
-margin-top: 15px;
-width: 80%;
+margin-top: 100px;
+margin-bottom: 100px;
+width: 100%;
+overflow: auto;
 }
 
 input[type=button] {
@@ -50,6 +53,8 @@ button.initial {
     position: fixed;
     left: 0;
     bottom: 0;
-    width: 85%;
+    width: 100%;
    text-align: center;
+   background-color: lightgrey;
+   padding-top: 15px;
   }
